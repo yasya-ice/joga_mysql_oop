@@ -55,6 +55,24 @@ class articleController {
             res.status(500).json({ message: 'Internal server error' });
         }
     }
+     async deleteArticle(req, res) {
+        try {
+            const articleId = req.params.id;
+
+            const affectedRows = await articleModel.delete(articleId);
+
+            if (affectedRows === 0) {
+                return res.status(404).json({ message: 'Article not found' });
+            }
+
+            res.status(200).json({
+                message: `Article with ID ${articleId} deleted successfully.`
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Internal server error' });
+        }
+    }
 }
 
 module.exports = articleController;
