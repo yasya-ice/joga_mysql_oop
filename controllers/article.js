@@ -1,3 +1,4 @@
+const ArticleModel = require('../models/article');
 const articleDbModel = require('../models/article');
 const articleModel = new articleDbModel();
 
@@ -36,6 +37,22 @@ class articleController {
             
         } catch (error) {
             res.status(500).json({ error: 'Failed to create article' });
+        }
+    }
+    async updateArticle(req, res) {
+        try {
+            const articleId = req.params.id;
+            const articleData = req.body;
+
+            await articleModel.update(articleId, articleData);
+
+            res.status(200).json({
+                message: `Article with ID ${articleId} updated successfully.`,
+                article: { id: articleId, ...articleData }
+            });
+        } catch (error) {
+            console.error(error);
+            res.status(500).json({ message: 'Internal server error' });
         }
     }
 }
