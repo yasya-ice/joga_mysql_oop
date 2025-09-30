@@ -1,0 +1,10 @@
+{{#article}}
+    <h1>{{name}}</h1>
+    {{#if author}}
+        <p>By {{author.name}}</p>
+    {{/if}}
+    <p>
+        <img src="/images/{{image}}" alt="">
+    </p>
+    {{{body}}}
+{{/article}}

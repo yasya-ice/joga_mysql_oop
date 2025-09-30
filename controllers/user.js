@@ -63,7 +63,6 @@ class UserController {
 
     async logout(req, res) {
         try {
-            console.log(req.session);
             if (!req.session) {
                 return res.status(200).json({ message: 'Already logged out' });
             }
@@ -73,7 +72,6 @@ class UserController {
                 }
                 res.json({ message: 'User is logged out' });
             });
-            console.log(req.session);
         }   catch (error) {     
             res.json({ message: 'Internal server error' });
         }   

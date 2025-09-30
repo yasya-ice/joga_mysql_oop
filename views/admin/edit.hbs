@@ -1,0 +1,43 @@
+<p class="breadcrumbs"><a href="/admin">Admin</a> &raquo;
+<h1>Edit article</h1>
+
+{{#article}}
+<form method="post" action="/admin/article/edit/{{id}}">
+    <label for="name">Name</label>
+    <input type="text" name="name" id="name" value="{{name}}">
+
+    <label for="slug">Slug</label>
+    <input type="text" name="slug" id="slug" value="{{slug}}">
+
+    <label for="image">Image</label>
+    <input type="text" name="image" id="image" value="{{image}}">
+
+    <label for="author">Author</label>
+  
+    <select name="author_id" id="author_id">
+        {{#if author}}
+            <option value="{{id}}" selected>{{author.name}}</option>
+        {{else if authors}}
+            {{#authors}}
+                <option value="{{id}}">{{name}}</option>
+            {{/authors}}
+        {{/if}}
+    </select>
+
+    <label for="body">Body</label>
+    <textarea name="body" id="body">{{{body}}}</textarea>
+
+    <button>Update</button>
+</form>
+
+<h2>Delete article</h2>
+
+<p>
+    If you want to remove this article, use the button below.
+</p>
+
+<form method="post" action="/admin/article/delete/{{id}}">
+    <input type="hidden" name="action" value="delete">
+    <button class="danger">Delete</button>
+</form>
+{{/article}}
